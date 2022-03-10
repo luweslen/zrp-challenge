@@ -5,20 +5,23 @@ defineProps({
   name: { type: String, required: true },
   abilities: { type: Array as PropType<string[]>, required: true },
   avatar: { type: String, required: true },
-})
+});
 
 </script>
 
 <template>
   <main class="pokemon-data">
-    <img :src="avatar" alt="Avatar do pokemon">
-    <h1>{{name}}</h1>
-    <span 
-      class="ability" 
+    <img
+      :src="avatar"
+      alt="Avatar do pokemon"
+    >
+    <h1>{{ name }}</h1>
+    <span
       v-for="ability in abilities"
       :key="ability"
+      class="ability"
     >
-      {{ability}}
+      {{ ability }}
     </span>
   </main>
 </template>

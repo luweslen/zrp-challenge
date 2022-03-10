@@ -2,20 +2,26 @@
 import { defineEmits, ref } from 'vue';
 
 const emit = defineEmits([
-  'search'
-])
+  'search',
+]);
 
-const searchValue = ref('')
+const searchValue = ref('');
 
-function hanldeSearch(){
-  emit('search', searchValue.value)
+function hanldeSearch() {
+  emit('search', searchValue.value);
 }
 </script>
 
 <template>
   <header class="header-search">
-    <input v-model="searchValue" type="text" placeholder="Digite o nome do pokemon">
-    <button @click="hanldeSearch">Pesquisar</button>
+    <input
+      v-model="searchValue"
+      type="text"
+      placeholder="Digite o nome do pokemon"
+    >
+    <button @click="hanldeSearch">
+      Pesquisar
+    </button>
   </header>
 </template>
 
