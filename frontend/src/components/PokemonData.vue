@@ -12,24 +12,55 @@ defineProps({
 <template>
   <main class="pokemon-data">
     <img :src="avatar" alt="Avatar do pokemon">
-    <div class="info">
-      <b>{{name}}</b>
-      <span 
-        class="ability" 
-        v-for="ability in abilities"
-        :key="ability"
-      >
-        {{ability}}
-      </span>
-    </div>
+    <h1>{{name}}</h1>
+    <span 
+      class="ability" 
+      v-for="ability in abilities"
+      :key="ability"
+    >
+      {{ability}}
+    </span>
   </main>
 </template>
 
 <style lang="scss" scoped>
 .pokemon-data{
-  .info {
-    display: flex;
-    flex-direction: column;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  border: 2px solid #5db9ff;
+
+  padding: 2rem;
+
+  margin: 0 auto;
+  background: #5db9ff;
+
+  @media (max-width: 620px){
+    width: 100%;
+  }
+
+  img {
+    width: 120px;
+  }
+
+  h1 {
+    color: #fff;
+  }
+
+  .ability {
+    background: #fff;
+    padding: 8px 16px;
+
+    border-radius: 16px;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 </style>

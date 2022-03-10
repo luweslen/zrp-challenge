@@ -10,11 +10,18 @@ type PokemonDataType = {
   avatar: string;
 }
 
-const pokemonData = ref<PokemonDataType>({})
+const pokemonData = ref<PokemonDataType | undefined>()
+const message = ref('Coloque o nome de um pokemon para saber as habilidades dele')
 
 async function handleSearchPokemon(value: string) {
-  const { data } = await API.get<PokemonDataType>(`/pokemon/${value}`)
-  pokemonData.value = data
+  pokemonData.value = undefined
+  const { data } = await API.get<PokemonDataType | { error: string }>(`/pokemon/${value.toLowerCase()}`)
+
+  if('error' in data){
+    message.value = 'Não foi encontrado dados deste pokemon, tente outro nome!'
+  } else {
+    pokemonData.value = data
+  }
 }
 
 </script>
@@ -29,17 +36,20 @@ async function handleSearchPokemon(value: string) {
     :abilities="pokemonData.abilities"
     :avatar="pokemonData.avatar"
   />
+  <span v-else class="no-data">{{message}}</span>
 </template>
 
-<style>
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
 }
 
 body {
-  width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
   
   display: flex;
@@ -47,7 +57,21 @@ body {
 }
 
 #app {
-  min-width: 920px;
+  max-width: 1080px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 32px;
+
+  @media (max-width: 1080px){
+    width: 100%;
+  }
+
+  span.no-data{
+    text-align: center;
+  }
 }
 
 </style>

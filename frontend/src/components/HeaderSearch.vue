@@ -21,10 +21,15 @@ function hanldeSearch(){
 
 <style lang="scss" scoped>
 .header-search{
+  width: 100%;
   height: 120px;
   display: flex;
   align-items: center;
-  
+  justify-content: center;
+
+  @media (max-width: 620px){
+    flex-direction: column;
+  }
 
   input {
     width: 100%;
@@ -40,6 +45,16 @@ function hanldeSearch(){
     background: #5db9ff;
 
     cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+
+    @media (max-width: 620px){
+     width: 100%;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 </style>
