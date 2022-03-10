@@ -17,4 +17,4 @@ router.use(PokemonRoutes);
 
 server.use(router.routes());
 
-server.listen(3000, () => console.log('SERVER STARTED'));
+server.listen(3333, () => console.log('SERVER STARTED'));
